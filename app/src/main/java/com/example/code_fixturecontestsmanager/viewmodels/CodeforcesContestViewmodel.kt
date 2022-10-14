@@ -12,11 +12,12 @@ class CodeforcesContestViewmodel: ViewModel() {
 
     var repository: CodeforcesContestsRepository = CodeforcesContestsRepository()
     var codeforcesContest = MutableLiveData<Contests>()
-
+    var listSize = MutableLiveData<Int>(0)
     fun getContests() {
         viewModelScope.launch {
             try {
                 codeforcesContest.value = repository.getCodeForcesContests()
+                listSize.value = codeforcesContest.value?.size
             } catch (e: Exception) {
                 Log.d("ERROR", e.toString())
             }

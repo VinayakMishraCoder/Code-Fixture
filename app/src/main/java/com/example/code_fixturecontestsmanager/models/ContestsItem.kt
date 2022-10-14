@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class ContestsItem(
 
-    var duration: String? = null,
+    var duration: Long? = null,
 
     var end_time: String? = null,
 

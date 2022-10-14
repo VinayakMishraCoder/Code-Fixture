@@ -7,17 +7,23 @@
         <variable
             name="currContest"
             type="com.example.code_fixture.models.ContestsItem" />
+        <variable
+            name="durationMorphed"
+            type="String" />
+        <variable
+            name="startDateAndTimeMorphed"
+            type="String" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
-        android:layout_marginStart="3dp"
-        android:layout_marginEnd="3dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
         app:cardElevation="16dp"
-        android:layout_marginBottom="13dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginTop="6dp"
         app:cardCornerRadius="20dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,10 +45,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="25dp"
                     android:text="CodeForces"
                     android:textColor="@color/white"
-                    android:textSize="25sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -51,9 +57,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="0dp"
-                    android:text="Clevertap Production Support Engineer (Java) Hiring Challenge"
-                    android:textColor="#E1BEE7"
-                    android:textSize="15sp" />
+                    android:text="@{currContest.name}"
+                    android:textColor="#B3E5FC"
+                    android:textSize="12sp" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/contest_duration"
@@ -61,9 +67,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
-                    android:text="Duration: 3hrs, 25secs"
+                    android:text="@{`Duration: ` + durationMorphed}"
                     android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:textSize="10sp" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/contest_date"
@@ -72,9 +78,9 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="0dp"
                     android:layout_marginBottom="15dp"
-                    android:text="Start Date: 25-11-22"
+                    android:text="@{`Start Date and Time : ` + startDateAndTimeMorphed}"
                     android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:textSize="10sp" />
 
             </LinearLayout>
 
@@ -82,9 +88,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:backgroundTint="@color/white"
-                android:layout_marginBottom="25dp"
+                android:layout_marginBottom="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -99,12 +105,12 @@
                     android:backgroundTint="@color/white"
                     android:hapticFeedbackEnabled="true"
                     android:text="Register"
-                    android:textColor="#6A1B9A"
+                    android:textColor="@color/themeColor"
                     app:cornerRadius="3dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:strokeColor="#9C27B0"
+                    app:strokeColor="@color/themeColor"
                     app:strokeWidth="1dp" />
 
                 <androidx.appcompat.widget.AppCompatImageView

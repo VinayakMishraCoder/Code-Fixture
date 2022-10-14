@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class MultiplatformContestsItem(
 
-    var duration: String? = null,
+    var duration: Long? = null,
 
     var end_time: String? = null,
 

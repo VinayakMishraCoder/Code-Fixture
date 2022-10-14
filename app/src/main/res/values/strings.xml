@@ -3,4 +3,8 @@
     <string name="welcome">Welcome</string>
     <string name="CforcesDescription">Codeforces aim is to offer you a convenient platform to organize,run and discuss programming contests. Join Contests with competitors all over the world.</string>
     <string name="startjoining">Start Joining!!</string>
+    <string name="filter">Filters</string>
+    <string name="under_">Under 24 Hours</string>
+    <string name="after_">After 24 Hours</string>
+    <string name="all_">All</string>
 </resources>
