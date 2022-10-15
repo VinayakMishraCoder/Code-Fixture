@@ -12,123 +12,166 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
         android:layout_marginStart="3dp"
-        android:layout_marginEnd="3dp"
-        app:cardElevation="16dp"
-        android:layout_marginBottom="13dp"
         android:layout_marginTop="13dp"
-        app:cardCornerRadius="20dp">
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="13dp"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="17dp"
+        app:cardElevation="26dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
-            <LinearLayout
-                android:id="@+id/alllinearLayout2"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:background="@drawable/card_top_background"
-                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:background="@drawable/all_contest_card_bg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/allsite_name"
+                    android:id="@+id/all_site_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="30dp"
-                    android:text="@{currAllContest.site}"
-                    android:textColor="@color/white"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="48dp"
+                    android:text="Codeforces"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/allcontest_name"
+                    android:id="@+id/all_contest_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="0dp"
-                    android:text="@{currAllContest.name}"
-                    android:textColor="#E1BEE7"
-                    android:textSize="15sp" />
+                    android:layout_marginTop="1dp"
+                    android:text="Global Round 13 - TechnoGroup"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/all_site_name"
+                    app:layout_constraintTop_toBottomOf="@+id/all_site_name" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/allcontest_duration"
+                    android:id="@+id/all_start_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
-                    android:text="@{`Duration: ` + currAllContest.duration.toString()}"
-                    android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:layout_marginTop="20dp"
+                    android:text="Start Date and Time: 3 Oct 2022 12:30:69"
+                    app:layout_constraintStart_toStartOf="@+id/all_contest_name"
+                    app:layout_constraintTop_toBottomOf="@+id/all_contest_name" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/allcontest_date"
+                    android:id="@+id/all_end_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="15dp"
-                    android:text="Start Date: 25-11-22"
-                    android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:layout_marginTop="6dp"
+                    android:text="End Date and Time: 3 Oct 2022 12:30:69"
+                    app:layout_constraintStart_toStartOf="@+id/all_start_time"
+                    app:layout_constraintTop_toBottomOf="@+id/all_start_time" />
 
-            </LinearLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="15dp"
-                android:backgroundTint="@color/white"
-                android:layout_marginBottom="25dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/alllinearLayout2">
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/all_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="25dp"
+                    android:text="Duration: 3 hrs 20 mins"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/all_end_time"
+                    app:layout_constraintTop_toBottomOf="@+id/all_end_time" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/allcontest_register_button"
+                    android:id="@+id/ongoing_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_gravity="left"
-                    android:layout_marginStart="15dp"
-                    android:backgroundTint="@color/white"
-                    android:hapticFeedbackEnabled="true"
-                    android:text="Register"
-                    android:textColor="#6A1B9A"
-                    app:cornerRadius="3dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:strokeColor="#9C27B0"
-                    app:strokeWidth="1dp" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/allset_alarm_button"
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="right"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/bell"
-                    app:layout_constraintBottom_toBottomOf="@+id/allcontest_register_button"
-                    app:layout_constraintEnd_toStartOf="@+id/allsave_button"
-                    app:layout_constraintTop_toTopOf="@+id/allcontest_register_button" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/allsave_button"
-                    android:layout_width="30dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="15dp"
-                    android:src="@drawable/bookmark"
-                    app:layout_constraintBottom_toBottomOf="@+id/allset_alarm_button"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:backgroundTint="#ECEFF1"
+                    android:text="Ongoing"
+                    android:textAllCaps="false"
+                    android:textColor="@color/red_alert"
+                    android:visibility="visible"
+                    app:cornerRadius="17dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/all_site_name"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/allset_alarm_button" />
+                    app:layout_constraintTop_toTopOf="@+id/all_site_name"
+                    app:strokeColor="@color/red_alert"
+                    app:strokeWidth="2dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/yet_to_start_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:backgroundTint="#ECEFF1"
+                    android:text="Yet To start"
+                    android:textAllCaps="false"
+                    android:textColor="@color/blue_alert"
+                    android:visibility="visible"
+                    app:cornerRadius="17dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/all_site_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/all_site_name"
+                    app:strokeColor="@color/blue_alert"
+                    app:strokeWidth="2dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/all_register_contest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="30dp"
+                android:text="Register"
+                android:textAllCaps="false"
+                app:cornerRadius="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/all_notify_button"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                app:layout_constraintVertical_bias="0.155" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/all_save_butotn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/white"
+                android:text="Save"
+                android:textAllCaps="false"
+                android:textColor="@color/themeColor"
+                app:cornerRadius="5dp"
+                app:layout_constraintBottom_toBottomOf="@+id/all_notify_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/all_notify_button"
+                app:layout_constraintTop_toTopOf="@+id/all_notify_button"
+                app:strokeColor="@color/themeColor"
+                app:strokeWidth="1dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/all_notify_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:text="Notify"
+                android:textAllCaps="false"
+                android:textColor="@color/themeColor"
+                app:cornerRadius="5dp"
+                app:layout_constraintBottom_toBottomOf="@+id/all_register_contest"
+                app:layout_constraintEnd_toStartOf="@+id/all_save_butotn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/all_register_contest"
+                app:layout_constraintTop_toTopOf="@+id/all_register_contest"
+                app:strokeColor="@color/themeColor"
+                app:strokeWidth="1dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

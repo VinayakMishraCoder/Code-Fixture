@@ -64,9 +64,6 @@ class CodeForcesActivity : AppCompatActivity(), ContestAdapter.onContestItemClic
                 }
             }
         }
-
-
-//        holderForPopupWindow = popupWindow
     }
 
     override fun onRegisterClick(contestsItem: ContestsItem) {
