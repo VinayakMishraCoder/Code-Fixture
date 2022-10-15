@@ -16,6 +16,6 @@ interface APIservices {
     suspend fun getLeetCodeContests(): Contests
 
     @GET("/api/v1/all")
-    suspend fun getAllContests(): MultiplatformContests
+    suspend fun getAllContests(): Contests
 
 }

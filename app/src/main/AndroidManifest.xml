@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -16,19 +17,16 @@
         android:theme="@style/Theme.CodeFixtureContestsManager"
         tools:targetApi="31">
         <activity
+            android:name=".activities.BrowserScreenActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.SavedActivity"
             android:exported="false" />
         <activity
             android:name=".activities.AllOtherPlatformActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.LeetCodeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.CodeChefActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.CodeForcesActivity"
+            android:name=".activities.SinglePlatformContestsActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
