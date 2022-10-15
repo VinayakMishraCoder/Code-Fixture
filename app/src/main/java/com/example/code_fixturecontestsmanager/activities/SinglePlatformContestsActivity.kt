@@ -52,8 +52,7 @@ class SinglePlatformContestsActivity : AppCompatActivity(),
             val inflater =
                 binding.root.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val view = inflater.inflate(R.layout.filter_popup_window, null) // pass custom layout
-            val popupWindow =
-                PopupWindow(view, 500, ConstraintLayout.LayoutParams.WRAP_CONTENT, true)
+            val popupWindow = PopupWindow(view, 500, ConstraintLayout.LayoutParams.WRAP_CONTENT, true)
             popupWindow.elevation = 40.0f
             popupWindow.showAsDropDown(binding.filterSortBut) // view to attach with
         }

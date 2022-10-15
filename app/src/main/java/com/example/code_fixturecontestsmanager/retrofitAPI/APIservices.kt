@@ -1,7 +1,6 @@
 package com.example.code_fixturecontestsmanager.retrofitAPI
 
 import com.example.code_fixture.models.Contests
-import com.example.code_fixture.models.MultiplatformContests
 import retrofit2.http.GET
 
 interface APIservices {
