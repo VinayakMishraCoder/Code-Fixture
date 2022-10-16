@@ -3,6 +3,8 @@ package com.example.code_fixturecontestsmanager.activities
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.*
+import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.provider.CalendarContract
 import android.view.LayoutInflater
@@ -10,6 +12,8 @@ import android.view.View
 import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.browser.customtabs.CustomTabColorSchemeParams
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
@@ -49,6 +53,7 @@ class SinglePlatformContestsActivity : AppCompatActivity(),
         MainActivity.ACTIVITY_SHIFTER?.let { activityId = intent?.getStringExtra(it) as String }
         binding.toolbarTitle.text = activityId + " Contests"
         binding.noResponseView.visibility = View.INVISIBLE
+
 
         UtilProvider.getGradientGoldenDescent(binding.toolbarTitle, activityId)
         UtilProvider.getGradientBlueDescent(binding.belowTools, "Start Registering in Contests!!")
@@ -105,9 +110,14 @@ class SinglePlatformContestsActivity : AppCompatActivity(),
     }
 
     override fun onRegisterClick(contestsItem: ContestsItem) {
-        val intent = Intent(this, BrowserScreenActivity::class.java)
-        intent.putExtra(URL_KEY, contestsItem.url)
-        startActivity(intent)
+        val builder = CustomTabsIntent.Builder()
+        val customTabsIntent = builder.build()
+        val colorInt: Int = Color.parseColor("#1565C0")
+        val defaultColors = CustomTabColorSchemeParams.Builder()
+            .setToolbarColor(colorInt)
+            .build()
+        builder.setDefaultColorSchemeParams(defaultColors)
+        customTabsIntent.launchUrl(this, Uri.parse(contestsItem.url))
     }
 
     override fun onSaveClick(contestsItem: ContestsItem) {

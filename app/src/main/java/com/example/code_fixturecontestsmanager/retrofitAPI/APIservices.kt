@@ -1,6 +1,7 @@
 package com.example.code_fixturecontestsmanager.retrofitAPI
 
 import com.example.code_fixture.models.Contests
+import com.example.code_fixturecontestsmanager.models.AvailablePlatforms
 import retrofit2.http.GET
 
 interface APIservices {
@@ -17,4 +18,6 @@ interface APIservices {
     @GET("/api/v1/all")
     suspend fun getAllContests(): Contests
 
+    @GET("/api/v1/sites")
+    suspend fun getAllAvailablePlatforms(): AvailablePlatforms
 }

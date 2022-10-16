@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.example.code_fixturecontestsmanager.activities.AllOtherPlatformActivity
+import com.example.code_fixturecontestsmanager.activities.PlatformsActivity
 import com.example.code_fixturecontestsmanager.activities.SinglePlatformContestsActivity
 import com.example.code_fixturecontestsmanager.databinding.ActivityMainBinding
 
@@ -18,7 +19,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.lottieAnimationView.playAnimation()
         binding.lottieAnimationView.loop(true)
+        binding.horizontalScrollView.apply {
+            isSmoothScrollingEnabled = true
 
+        }
 
         binding.apply {
             cfContestButton.setOnClickListener {
@@ -37,8 +41,8 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             allContestButton.setOnClickListener {
-                val intent = Intent(this@MainActivity, AllOtherPlatformActivity::class.java)
-                intent.putExtra(ACTIVITY_SHIFTER, OTHER_PLATFORMS)
+                val intent = Intent(this@MainActivity, PlatformsActivity::class.java)
+//                intent.putExtra(ACTIVITY_SHIFTER, OTHER_PLATFORMS)
                 startActivity(intent)
             }
         }
