@@ -5,6 +5,7 @@
     <string name="startjoining">Start Joining!!</string>
     <string name="filter">Filters</string>
     <string name="under_">Under 24 Hours</string>
-    <string name="after_">After 24 Hours</string>
+    <string name="after_">Later Contests</string>
     <string name="all_">All</string>
+    <string name="empty_contest_list_text">No contests to show..</string>
 </resources>

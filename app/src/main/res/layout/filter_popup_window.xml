@@ -48,7 +48,7 @@
                 </LinearLayout>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView2"
+                    android:id="@+id/under24Filter"
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
                     android:clickable="true"
@@ -85,7 +85,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView3"
+                    android:id="@+id/before24Filter"
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
                     android:clickable="true"
@@ -93,7 +93,7 @@
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cardView2">
+                    app:layout_constraintTop_toBottomOf="@+id/under24Filter">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -121,6 +121,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/allFilter"
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
                     android:clickable="true"
@@ -128,7 +129,7 @@
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cardView3">
+                    app:layout_constraintTop_toBottomOf="@+id/before24Filter">
 
                     <LinearLayout
                         android:layout_width="match_parent"

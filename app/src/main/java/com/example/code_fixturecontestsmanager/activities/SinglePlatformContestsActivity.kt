@@ -5,17 +5,19 @@ import android.content.Intent
 import android.content.Intent.*
 import android.os.Bundle
 import android.provider.CalendarContract
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.example.code_fixture.models.Contests
 import com.example.code_fixture.models.ContestsItem
 import com.example.code_fixturecontestsmanager.MainActivity
+import com.example.code_fixturecontestsmanager.ModulateResponse
 import com.example.code_fixturecontestsmanager.R
 import com.example.code_fixturecontestsmanager.UtilProvider
 import com.example.code_fixturecontestsmanager.adapters.SinglePlatformContestAdapter
@@ -32,9 +34,11 @@ class SinglePlatformContestsActivity : AppCompatActivity(),
     private val viewModel: SinglePlatformContestsViewModel by lazy {
         ViewModelProvider(this).get(SinglePlatformContestsViewModel::class.java)
     }
-
     companion object {
         val URL_KEY = "url_key"
+        val UNDER_24_FILTER = "UNDER_24_FILTER"
+        val LATER_CONTESTS_FILTER = "LATER_CONTESTS_FILTER"
+        val ALL_CONTESTS_FILTER = "ALL_CONTESTS_FILTER"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,16 +48,25 @@ class SinglePlatformContestsActivity : AppCompatActivity(),
 
         MainActivity.ACTIVITY_SHIFTER?.let { activityId = intent?.getStringExtra(it) as String }
         binding.toolbarTitle.text = activityId + " Contests"
+        binding.noResponseView.visibility = View.INVISIBLE
 
         UtilProvider.getGradientGoldenDescent(binding.toolbarTitle, activityId)
         UtilProvider.getGradientBlueDescent(binding.belowTools, "Start Registering in Contests!!")
 
         binding.filterSortBut.setOnClickListener {
-            val inflater =
-                binding.root.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val inflater = binding.root.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val view = inflater.inflate(R.layout.filter_popup_window, null) // pass custom layout
             val popupWindow = PopupWindow(view, 500, ConstraintLayout.LayoutParams.WRAP_CONTENT, true)
             popupWindow.elevation = 40.0f
+            view.findViewById<CardView>(R.id.under24Filter).setOnClickListener {
+                viewModel.setFilter(UNDER_24_FILTER)
+            }
+            view.findViewById<CardView>(R.id.before24Filter).setOnClickListener {
+                viewModel.setFilter(LATER_CONTESTS_FILTER)
+            }
+            view.findViewById<CardView>(R.id.allFilter).setOnClickListener {
+                viewModel.setFilter(ALL_CONTESTS_FILTER)
+            }
             popupWindow.showAsDropDown(binding.filterSortBut) // view to attach with
         }
 
@@ -71,15 +84,21 @@ class SinglePlatformContestsActivity : AppCompatActivity(),
 
         viewModel.singlePlatformContests.observe(this) { contestData ->
             viewModel.listSize.observe(this) { currSize ->
-                binding.progressBarCforces.visibility =
-                    (if (currSize > 0) View.GONE else View.VISIBLE)
+                binding.progressBarCforces.visibility = (if (currSize > 0) View.GONE else View.VISIBLE)
                 if (currSize > 0) {
+                    setFilteredValues(contestData)
+                    viewModel.filteredListSize?.let {
+                        if(it == 0) binding.noResponseView.visibility = View.VISIBLE
+                        else binding.noResponseView.visibility = View.INVISIBLE
+                    }
                     adapter.setUpRecyclerView(
                         data = contestData,
                         listener = this@SinglePlatformContestsActivity,
                         activityId = activityId
                     )
                     binding.recyclerView.adapter = adapter
+                } else {
+
                 }
             }
         }
@@ -99,8 +118,12 @@ class SinglePlatformContestsActivity : AppCompatActivity(),
         notifierForContest(contestsItem)
     }
 
-    fun onFilter(id: Int) {
-
+    fun setFilteredValues(contestData: Contests) {
+        if(viewModel.filteredValuesSet) return
+        viewModel.singlePlatformContestsLater = ModulateResponse.after24Hours(contestData)
+        viewModel.singlePlatformContestsUnder24Hours = ModulateResponse.under24Hours(contestData)
+        viewModel.singlePlatformAllContests = contestData
+        viewModel.filteredValuesSet = true
     }
 
     fun notifierForContest(contestsItem: ContestsItem) {
@@ -119,8 +142,8 @@ class SinglePlatformContestsActivity : AppCompatActivity(),
         val ending_year: String? = end_time?.substring(6, 10)
         val ending_hour: String? = end_time?.substring(11, 13)
         val ending_minutes: String? = end_time?.substring(14, 16)
-        val beginCal: Calendar? = Calendar.getInstance()
 
+        val beginCal: Calendar? = Calendar.getInstance()
         year?.toInt()?.let { _year ->
             month?.toInt()?.let { it1 ->
                 date?.toInt()?.let { it2 ->

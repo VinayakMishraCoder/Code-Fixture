@@ -18,6 +18,7 @@ class SinglePlatformContestAdapter : RecyclerView.Adapter<SinglePlatformContestA
         this.data = data
         this.listener = listener
         this.activityId = activityId
+        notifyDataSetChanged()
     }
 
     inner class ItemContestViewHolder(val binding: ItemContestBinding) :
