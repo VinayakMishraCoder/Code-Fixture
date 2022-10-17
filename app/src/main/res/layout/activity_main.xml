@@ -6,20 +6,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/plo"
         android:fitsSystemWindows="true">
-
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/AnimationView"
-            android:layout_width="78dp"
-            android:layout_height="66dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:lottie_autoPlay="true"
-            app:lottie_fileName="jumpingdots.json"
-            app:lottie_speed="2.5" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/lander_menu"
@@ -34,12 +22,12 @@
             android:id="@+id/materialCardView2"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="26dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/AnimationView">
+            app:layout_constraintTop_toBottomOf="@+id/lander_menu">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

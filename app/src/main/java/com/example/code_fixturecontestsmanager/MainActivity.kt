@@ -20,10 +20,7 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         supportActionBar?.hide()
 
-        window.setStatusBarColor(getResources().getColor(R.color.white));
-
-        binding.AnimationView.playAnimation()
-        binding.AnimationView.loop(true)
+        window.setStatusBarColor(getResources().getColor(R.color.plo));
 
         binding.checkoutAnim.playAnimation()
         binding.checkoutAnim.loop(true)

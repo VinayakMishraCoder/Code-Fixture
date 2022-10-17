@@ -12,4 +12,5 @@
     <color name="themeColor">#1565C0</color>
     <color name="red_alert">#FF1744</color>
     <color name="blue_alert">#00B8D4</color>
+    <color name="plo">#ECEFF1</color>
 </resources>
