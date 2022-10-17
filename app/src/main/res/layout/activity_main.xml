@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:fitsSystemWindows="true"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/AnimationView"
+            android:layout_width="78dp"
+            android:layout_height="66dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="jumpingdots.json"
+            app:lottie_speed="2.5" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/lander_menu"
@@ -22,12 +34,12 @@
             android:id="@+id/materialCardView2"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="6dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lander_menu">
+            app:layout_constraintTop_toBottomOf="@+id/AnimationView">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -71,13 +83,13 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/add_more"
                     android:layout_width="89dp"
-                    android:textAllCaps="false"
                     android:layout_height="34dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="4dp"
-                    android:layout_marginTop="4dp"
                     android:backgroundTint="#FB8C00"
                     android:text="Add More"
+                    android:textAllCaps="false"
                     android:textSize="10sp"
                     app:cornerRadius="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -93,8 +105,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
-            android:textStyle="bold"
             android:text="Checkout Top Platforms"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/materialCardView2"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
 
@@ -102,6 +114,7 @@
             android:id="@+id/horizontalScrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -109,9 +122,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:gravity="top"
-                android:orientation="horizontal"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="300dp"
@@ -138,13 +151,13 @@
                         <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="CodeForces"
-                            android:textColor="@color/white"
-                            android:textStyle="bold"
                             android:layout_gravity="center"
                             android:layout_marginTop="15dp"
                             android:layout_marginBottom="5dp"
-                            android:textSize="20sp"/>
+                            android:text="CodeForces"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:layout_width="220dp"
@@ -158,21 +171,21 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/cf_contest_button"
                             android:layout_width="200dp"
+                            android:layout_height="60dp"
                             android:layout_gravity="center"
                             android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="25dp"
-                            android:layout_marginTop="10dp"
+                            android:backgroundTint="@color/white"
                             android:text="Check Out"
                             android:textAllCaps="false"
-                            android:layout_height="60dp"
-                            app:cornerRadius="10dp"
-                            android:backgroundTint="@color/white"
                             android:textColor="@color/progressColor"
-                            app:strokeWidth="1dp"
-                            app:strokeColor="@color/progressColor"
                             android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            app:cornerRadius="10dp"
+                            app:strokeColor="@color/progressColor"
+                            app:strokeWidth="1dp" />
 
                     </LinearLayout>
 
@@ -204,13 +217,13 @@
                         <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="CodeForces"
-                            android:textColor="@color/white"
-                            android:textStyle="bold"
                             android:layout_gravity="center"
                             android:layout_marginTop="15dp"
                             android:layout_marginBottom="5dp"
-                            android:textSize="20sp"/>
+                            android:text="CodeForces"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:layout_width="220dp"
@@ -224,21 +237,21 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/leet_contest_button"
                             android:layout_width="200dp"
+                            android:layout_height="60dp"
                             android:layout_gravity="center"
                             android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="25dp"
-                            android:layout_marginTop="10dp"
+                            android:backgroundTint="@color/white"
                             android:text="Check Out"
                             android:textAllCaps="false"
-                            android:layout_height="60dp"
-                            app:cornerRadius="10dp"
-                            android:backgroundTint="@color/white"
                             android:textColor="@color/progressColor"
-                            app:strokeWidth="1dp"
-                            app:strokeColor="@color/progressColor"
                             android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            app:cornerRadius="10dp"
+                            app:strokeColor="@color/progressColor"
+                            app:strokeWidth="1dp" />
 
                     </LinearLayout>
 
@@ -270,13 +283,13 @@
                         <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="CodeForces"
-                            android:textColor="@color/white"
-                            android:textStyle="bold"
                             android:layout_gravity="center"
                             android:layout_marginTop="15dp"
                             android:layout_marginBottom="5dp"
-                            android:textSize="20sp"/>
+                            android:text="CodeForces"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:layout_width="220dp"
@@ -290,21 +303,21 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/cchef_contest_button"
                             android:layout_width="200dp"
+                            android:layout_height="60dp"
                             android:layout_gravity="center"
                             android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="25dp"
-                            android:layout_marginTop="10dp"
+                            android:backgroundTint="@color/white"
                             android:text="Check Out"
                             android:textAllCaps="false"
-                            android:layout_height="60dp"
-                            app:cornerRadius="10dp"
-                            android:backgroundTint="@color/white"
                             android:textColor="@color/progressColor"
-                            app:strokeWidth="1dp"
-                            app:strokeColor="@color/progressColor"
                             android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            app:cornerRadius="10dp"
+                            app:strokeColor="@color/progressColor"
+                            app:strokeWidth="1dp" />
 
                     </LinearLayout>
 
@@ -348,19 +361,19 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/all_contest_button"
                             android:layout_width="180dp"
+                            android:layout_height="60dp"
                             android:layout_gravity="center"
                             android:layout_marginStart="10dp"
+                            android:layout_marginTop="20dp"
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="35dp"
-                            android:layout_marginTop="20dp"
+                            android:backgroundTint="@color/white"
                             android:text="Check Out"
                             android:textAllCaps="false"
-                            android:layout_height="60dp"
-                            app:cornerRadius="10dp"
-                            android:backgroundTint="@color/white"
                             android:textColor="@color/black"
                             android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            app:cornerRadius="10dp" />
 
                     </LinearLayout>
 

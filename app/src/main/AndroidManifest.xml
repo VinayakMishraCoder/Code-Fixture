@@ -20,6 +20,16 @@
             android:name=".activities.PlatformsActivity"
             android:exported="false" />
         <activity
+            android:name=".splash.SplashScreenOne"
+            android:exported="true"
+            android:theme="@style/SplashScreenBackground">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".activities.BrowserScreenActivity"
             android:exported="false" />
         <activity
@@ -33,13 +43,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"/>
     </application>
 
 </manifest>

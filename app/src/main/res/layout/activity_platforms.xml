@@ -120,7 +120,7 @@
                         android:layout_marginTop="6dp"
                         android:layout_marginBottom="6dp"
                         android:text="Sites Available"
-                        android:textColor="#039BE5"
+                        android:textColor="#0D47A1"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -131,7 +131,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="15dp"
                         android:text="Visit"
-                        android:textColor="#039BE5"
+                        android:textColor="#0D47A1"
                         app:layout_constraintBottom_toBottomOf="@+id/materialTextView"
                         app:layout_constraintEnd_toStartOf="@+id/materialTextView3"
                         app:layout_constraintTop_toTopOf="@+id/materialTextView"

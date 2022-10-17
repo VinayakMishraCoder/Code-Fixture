@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Window
+import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import com.example.code_fixturecontestsmanager.activities.AllOtherPlatformActivity
 import com.example.code_fixturecontestsmanager.activities.PlatformsActivity
@@ -19,6 +21,9 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         window.setStatusBarColor(getResources().getColor(R.color.white));
+
+        binding.AnimationView.playAnimation()
+        binding.AnimationView.loop(true)
 
         binding.checkoutAnim.playAnimation()
         binding.checkoutAnim.loop(true)
