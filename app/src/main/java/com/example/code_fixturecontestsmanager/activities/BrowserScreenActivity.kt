@@ -40,7 +40,7 @@ class BrowserScreenActivity : AppCompatActivity() {
                 onBackPressed()
             }
             toolbarTitle.text = TOOLBAR_TITLE
-            UtilProvider.getGradientGoldenDescent(toolbarTitle, TOOLBAR_TITLE)
+            UtilProvider.getGradientSilverDescent(toolbarTitle, TOOLBAR_TITLE)
         }
 
         val webSettings = mWebView?.getSettings()

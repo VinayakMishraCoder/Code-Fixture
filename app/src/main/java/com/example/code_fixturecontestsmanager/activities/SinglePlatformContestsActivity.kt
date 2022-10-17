@@ -55,7 +55,7 @@ class SinglePlatformContestsActivity : AppCompatActivity(),
         binding.noResponseView.visibility = View.INVISIBLE
 
 
-        UtilProvider.getGradientGoldenDescent(binding.toolbarTitle, activityId)
+        UtilProvider.getGradientSilverDescent(binding.toolbarTitle, (activityId+"Contests"))
         UtilProvider.getGradientBlueDescent(binding.belowTools, "Start Registering in Contests!!")
 
         binding.filterSortBut.setOnClickListener {

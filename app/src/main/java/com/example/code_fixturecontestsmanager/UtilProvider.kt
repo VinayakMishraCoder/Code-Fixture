@@ -35,9 +35,9 @@ object UtilProvider {
         return duration
     }
 
-    fun getGradientGoldenDescent(textView: MaterialTextView, activityName: String) {
+    fun getGradientSilverDescent(textView: MaterialTextView, activityName: String) {
         val paint = textView.paint
-        val width = paint.measureText((activityName+ " Contests"))
+        val width = paint.measureText((activityName))
         val textShader: Shader = LinearGradient(
             0f, 0f, width, textView.textSize, intArrayOf(
                 Color.parseColor("#E1F5FE"), // start color

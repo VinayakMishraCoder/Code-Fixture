@@ -5,16 +5,11 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_marginTop="6dp"
-        android:layout_marginBottom="6dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:background="@drawable/line_bottom"
-        app:strokeWidth="1dp"
         android:clickable="true"
+        android:layout_marginTop="1dp"
         android:foreground="?android:attr/selectableItemBackground"
-        app:strokeColor="@color/white"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_marginTop="14dp"
@@ -37,23 +32,20 @@
                 android:id="@+id/visit_link"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginEnd="17dp"
+                android:layout_marginEnd="9dp"
                 android:src="@drawable/link"
                 app:layout_constraintBottom_toBottomOf="@+id/site_name"
-                app:layout_constraintEnd_toStartOf="@+id/appCompatImageView2"
+                app:layout_constraintEnd_toStartOf="@+id/materialRadioButton"
                 app:layout_constraintTop_toTopOf="@+id/site_name" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/appCompatImageView2"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginEnd="12dp"
-                android:src="@drawable/heart"
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/materialRadioButton"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="10dp"
                 app:layout_constraintBottom_toBottomOf="@+id/visit_link"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/visit_link"
-                app:layout_constraintVertical_bias="0.0" />
-
+                app:layout_constraintTop_toTopOf="@+id/visit_link" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
