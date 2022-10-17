@@ -1,6 +1,7 @@
 package com.example.code_fixturecontestsmanager
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -17,11 +18,12 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         supportActionBar?.hide()
 
-        binding.lottieAnimationView.playAnimation()
-        binding.lottieAnimationView.loop(true)
+        window.setStatusBarColor(getResources().getColor(R.color.white));
+
+        binding.checkoutAnim.playAnimation()
+        binding.checkoutAnim.loop(true)
         binding.horizontalScrollView.apply {
             isSmoothScrollingEnabled = true
-
         }
 
         binding.apply {
@@ -41,15 +43,17 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             allContestButton.setOnClickListener {
+
+            }
+            addMore.setOnClickListener {
                 val intent = Intent(this@MainActivity, PlatformsActivity::class.java)
-//                intent.putExtra(ACTIVITY_SHIFTER, OTHER_PLATFORMS)
                 startActivity(intent)
             }
         }
     }
 
     companion object {
-        val ACTIVITY_SHIFTER:String = "ACTIVITY_SHIFTER";
+        val ACTIVITY_SHIFTER: String = "ACTIVITY_SHIFTER";
         val CODE_FORCES = "CodeForces";
         val CODE_CHEF = "CodeChef";
         val LEET_CODE = "LeetCode";

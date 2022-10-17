@@ -40,9 +40,9 @@ object UtilProvider {
         val width = paint.measureText((activityName+ " Contests"))
         val textShader: Shader = LinearGradient(
             0f, 0f, width, textView.textSize, intArrayOf(
-                Color.parseColor("#8D6E63"), // start color
-                Color.parseColor("#FFEB3B"), // middle color
-                Color.parseColor("#8D6E63"), // end color
+                Color.parseColor("#E1F5FE"), // start color
+                Color.parseColor("#FAFAFA"), // middle color
+                Color.parseColor("#E8EAF6"), // end color
             ), null, Shader.TileMode.CLAMP
         )
         textView.paint.shader = textShader
