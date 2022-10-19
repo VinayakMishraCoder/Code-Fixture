@@ -13,4 +13,11 @@
     <color name="red_alert">#FF1744</color>
     <color name="blue_alert">#00B8D4</color>
     <color name="plo">#ECEFF1</color>
+
+    <!--  Color Randomize  -->
+    <color name="bg_color1">#0288D1</color>
+    <color name="bg_color2">#0097A7</color>
+    <color name="bg_color3">#5C6BC0</color>
+    <color name="bg_color4">#78909C</color>
+
 </resources>

@@ -1,20 +1,28 @@
 package com.example.code_fixturecontestsmanager.adapters
 
+import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.code_fixture.models.ContestsItem
 import com.example.code_fixturecontestsmanager.MainActivity
+import com.example.code_fixturecontestsmanager.R
 import com.example.code_fixturecontestsmanager.UtilProvider
 import com.example.code_fixturecontestsmanager.databinding.ItemContestBinding
 
-class SinglePlatformContestAdapter : RecyclerView.Adapter<SinglePlatformContestAdapter.ItemContestViewHolder>() {
+class SinglePlatformContestAdapter :
+    RecyclerView.Adapter<SinglePlatformContestAdapter.ItemContestViewHolder>() {
 
     var data: ArrayList<ContestsItem>? = null
     var listener: onContestItemClickListener? = null
-    var activityId:String? = null
+    var activityId: String? = null
 
-    fun setUpRecyclerView(data: ArrayList<ContestsItem>, listener: onContestItemClickListener, activityId: String) {
+    fun setUpRecyclerView(
+        data: ArrayList<ContestsItem>,
+        listener: onContestItemClickListener,
+        activityId: String
+    ) {
         this.data = data
         this.listener = listener
         this.activityId = activityId
@@ -29,31 +37,53 @@ class SinglePlatformContestAdapter : RecyclerView.Adapter<SinglePlatformContestA
         return ItemContestViewHolder(binding)
     }
 
+    /**
+     * 1) Set listeners on individual buttons.
+     * 2) Morph Duration to Hours and Minutes.
+     * 3) Morph date and time to IST. (separate format for CodeChef contests)
+     * */
+    @SuppressLint("ResourceType")
     override fun onBindViewHolder(holder: ItemContestViewHolder, position: Int) {
+        val contest = data?.get(position)
         holder.binding.apply {
-
-            /**
-             * 1) Set listeners on individual buttons.
-             * 2) Morph Duration to Hours and Minutes.
-             * 3) Morph date and time to IST. (separate format for CodeChef contests)
-             * */
+            when (contest?.in_24_hours) {
+                "Yes" -> {
+                    itemContestBg.setBackgroundResource(R.color.bg_color4)
+                }
+                "No" -> {
+                    itemContestBg.setBackgroundResource(R.color.bg_color2)
+                }
+            }
+            currStatus.text = when (contest?.status) {
+                "CODING" -> {
+                    "• Ongoing"
+                }
+                else -> {
+                    "• Yet To Start"
+                }
+            }
 
             contestRegisterButton.setOnClickListener {
-                data?.get(position)?.let { listener?.onRegisterClick(it) }
+                contest?.let { listener?.onRegisterClick(it) }
             }
             setAlarmButton.setOnClickListener {
-                data?.get(position)?.let { listener?.onAlarmSetClick(it) }
+                contest?.let { listener?.onAlarmSetClick(it) }
             }
             saveButton.setOnClickListener {
-                data?.get(position)?.let { listener?.onSaveClick(it) }
+                contest?.let { listener?.onSaveClick(it) }
             }
-            currContest = data?.get(position)
+            currContest = contest
             durationMorphed = currContest?.duration?.let { UtilProvider.intoHoursAndMinutes(it) }
-            siteName.text = activityId
-            if(activityId == MainActivity.CODE_CHEF)
-                startDateAndTimeMorphed = currContest?.start_time?.let { UtilProvider.istProviderForCodeChef(it) }
+
+            if (contest?.site == null) siteName.text = "• " + activityId
+            else siteName.text = "• " + contest.site
+
+            if (activityId == MainActivity.CODE_CHEF)
+                startDateAndTimeMorphed =
+                    currContest?.start_time?.let { UtilProvider.istProviderForCodeChef(it) }
             else
-                startDateAndTimeMorphed = currContest?.start_time?.let { UtilProvider.istProvider(it) }
+                startDateAndTimeMorphed =
+                    currContest?.start_time?.let { UtilProvider.istProvider(it) }
         }
     }
 
