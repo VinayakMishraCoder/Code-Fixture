@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="currContest"
             type="com.example.code_fixture.models.ContestsItem" />

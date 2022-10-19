@@ -48,7 +48,7 @@ class SinglePlatformContestAdapter :
         holder.binding.apply {
             when (contest?.in_24_hours) {
                 "Yes" -> {
-                    itemContestBg.setBackgroundResource(R.color.bg_color4)
+                    itemContestBg.setBackgroundResource(R.color.under24bg)
                 }
                 "No" -> {
                     itemContestBg.setBackgroundResource(R.color.bg_color2)
