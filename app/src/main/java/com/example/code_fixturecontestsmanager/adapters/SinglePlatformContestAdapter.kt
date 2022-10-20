@@ -78,7 +78,7 @@ class SinglePlatformContestAdapter :
             if (contest?.site == null) siteName.text = "• " + activityId
             else siteName.text = "• " + contest.site
 
-            if (activityId == MainActivity.CODE_CHEF)
+            if (activityId == MainActivity.CODE_CHEF || contest?.site == "CodeChef")
                 startDateAndTimeMorphed =
                     currContest?.start_time?.let { UtilProvider.istProviderForCodeChef(it) }
             else

@@ -29,8 +29,7 @@ import com.example.code_fixturecontestsmanager.databinding.ActivitySinglePlatfor
 import com.example.code_fixturecontestsmanager.viewmodels.SinglePlatformContestsViewModel
 import java.util.*
 
-class SinglePlatformContestsActivity : AppCompatActivity(),
-    SinglePlatformContestAdapter.onContestItemClickListener {
+class SinglePlatformContestsActivity : AppCompatActivity(), SinglePlatformContestAdapter.onContestItemClickListener {
 
     lateinit var binding: ActivitySinglePlatformContestsBinding
     lateinit var adapter: SinglePlatformContestAdapter

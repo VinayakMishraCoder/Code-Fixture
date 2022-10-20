@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.code_fixture.models.Contests
-import com.example.code_fixture.models.ContestsItem
 import com.example.code_fixturecontestsmanager.activities.SinglePlatformContestsActivity
 import com.example.code_fixturecontestsmanager.repositories.ContestsRepository
 import kotlinx.coroutines.launch

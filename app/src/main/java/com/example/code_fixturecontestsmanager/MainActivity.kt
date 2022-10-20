@@ -45,7 +45,8 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             allContestButton.setOnClickListener {
-
+                val intent = Intent(this@MainActivity, AllOtherPlatformActivity::class.java)
+                startActivity(intent)
             }
             addMore.setOnClickListener {
                 val intent = Intent(this@MainActivity, PlatformsActivity::class.java)
