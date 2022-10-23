@@ -9,6 +9,8 @@ import android.os.Bundle
 import android.provider.CalendarContract
 import android.view.LayoutInflater
 import android.view.View
+import android.view.animation.AnimationUtils
+import android.view.animation.LayoutAnimationController
 import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
@@ -87,7 +89,16 @@ class AllOtherPlatformActivity : AppCompatActivity(),
                         data = contestData,
                         listener = this@AllOtherPlatformActivity,
                         activityId = activityId
-                    )
+                    ) {
+                        val controller: LayoutAnimationController =
+                            AnimationUtils.loadLayoutAnimation(
+                                binding.recyclerView.context,
+                                R.anim.layout_anim
+                            )
+                        binding.recyclerView.setLayoutAnimation(controller);
+                        adapter.notifyDataSetChanged()
+                        binding.recyclerView.scheduleLayoutAnimation()
+                    }
                     binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
                         android.widget.SearchView.OnQueryTextListener {
                         override fun onQueryTextSubmit(p0: String?): Boolean = false
@@ -104,7 +115,9 @@ class AllOtherPlatformActivity : AppCompatActivity(),
                                 data = filteredData,
                                 listener = this@AllOtherPlatformActivity,
                                 activityId = activityId
-                            )
+                            ) {
+                                adapter.notifyDataSetChanged()
+                            }
                             return false
                         }
                     })

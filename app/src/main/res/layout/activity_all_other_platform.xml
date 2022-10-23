@@ -116,6 +116,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:translationZ="90dp"
+            android:layoutAnimation="@anim/layout_anim"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_contest"
             tools:itemCount="10"

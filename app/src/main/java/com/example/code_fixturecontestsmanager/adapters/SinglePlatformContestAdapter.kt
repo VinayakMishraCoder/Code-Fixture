@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import android.view.animation.LayoutAnimationController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.code_fixture.models.ContestsItem
 import com.example.code_fixturecontestsmanager.MainActivity
@@ -21,12 +23,14 @@ class SinglePlatformContestAdapter :
     fun setUpRecyclerView(
         data: ArrayList<ContestsItem>,
         listener: onContestItemClickListener,
-        activityId: String
+        activityId: String,
+        setLayoutAnimation: () -> Unit
     ) {
+
         this.data = data
         this.listener = listener
         this.activityId = activityId
-        notifyDataSetChanged()
+        setLayoutAnimation.invoke()
     }
 
     inner class ItemContestViewHolder(val binding: ItemContestBinding) :
@@ -42,9 +46,9 @@ class SinglePlatformContestAdapter :
      * 2) Morph Duration to Hours and Minutes.
      * 3) Morph date and time to IST. (separate format for CodeChef contests)
      * */
-    @SuppressLint("ResourceType")
     override fun onBindViewHolder(holder: ItemContestViewHolder, position: Int) {
         val contest = data?.get(position)
+
         holder.binding.apply {
             when (contest?.in_24_hours) {
                 "Yes" -> {
