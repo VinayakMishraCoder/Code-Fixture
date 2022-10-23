@@ -26,11 +26,11 @@ class SinglePlatformContestAdapter :
         activityId: String,
         setLayoutAnimation: () -> Unit
     ) {
-
         this.data = data
         this.listener = listener
         this.activityId = activityId
         setLayoutAnimation.invoke()
+        // change
     }
 
     inner class ItemContestViewHolder(val binding: ItemContestBinding) :
