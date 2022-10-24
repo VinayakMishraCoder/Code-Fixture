@@ -3,16 +3,19 @@ package com.example.code_fixturecontestsmanager.activities
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.CalendarContract
 import android.view.LayoutInflater
 import android.view.View
+import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
 import android.widget.PopupWindow
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
@@ -28,6 +31,7 @@ import com.example.code_fixturecontestsmanager.R
 import com.example.code_fixturecontestsmanager.UtilProvider
 import com.example.code_fixturecontestsmanager.adapters.SinglePlatformContestAdapter
 import com.example.code_fixturecontestsmanager.databinding.ActivityAllOtherPlatformBinding
+import com.example.code_fixturecontestsmanager.databinding.LoadingDialogBinding
 import com.example.code_fixturecontestsmanager.viewmodels.SinglePlatformContestsViewModel
 import java.util.*
 import java.util.Locale.filter
@@ -66,7 +70,12 @@ class AllOtherPlatformActivity : AppCompatActivity(),
         }
 
         binding.backButton.setOnClickListener { onBackPressed() }
-
+        val dialogBinding = LoadingDialogBinding.inflate(layoutInflater)
+        val dialog = AlertDialog.Builder(this).setView(dialogBinding.root).create()
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND)
+        dialog.show()
         viewModel.getContests(activityId, {
             Toast.makeText(
                 this@AllOtherPlatformActivity,
@@ -78,7 +87,8 @@ class AllOtherPlatformActivity : AppCompatActivity(),
 
         viewModel.singlePlatformContests.observe(this) { contestData ->
             viewModel.listSize.observe(this) { currSize ->
-                binding.progressHorz.visibility = (if (currSize > 0) View.GONE else View.VISIBLE)
+//                binding.progressHorz.visibility = (if (currSize > 0) View.GONE else View.VISIBLE)
+                dialog.cancel()
                 if (currSize > 0) {
                     setFilteredValues(contestData)
                     viewModel.filteredListSize?.let {

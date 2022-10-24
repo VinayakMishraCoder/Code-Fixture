@@ -24,6 +24,12 @@ import com.google.firebase.ktx.Firebase
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
+
+    /**
+     * Change all platform activity to -> multiplatform.
+     * Single Adapter to Contest Adapter.
+     * */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -87,3 +93,9 @@ class MainActivity : AppCompatActivity() {
         val OTHER_PLATFORMS = "OtherPlatforms";
     }
 }
+
+
+
+
+
+

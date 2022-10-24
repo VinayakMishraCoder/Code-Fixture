@@ -92,7 +92,7 @@
                         android:layout_gravity="end"
                         android:layout_marginStart="15dp"
                         android:layout_marginEnd="5dp"
-                        android:textColor="#FFF59D"
+                        android:textColor="#FFEE58"
                         android:textSize="12sp" />
 
                     <com.google.android.material.textview.MaterialTextView
