@@ -17,7 +17,7 @@
         android:theme="@style/Theme.CodeFixtureContestsManager"
         tools:targetApi="31">
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.login.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".activities.PlatformsActivity"

@@ -65,8 +65,7 @@ class SinglePlatformContestsActivity : AppCompatActivity(),
             val inflater =
                 binding.root.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val view = inflater.inflate(R.layout.filter_popup_window, null) // pass custom layout
-            val popupWindow =
-                PopupWindow(view, 500, ConstraintLayout.LayoutParams.WRAP_CONTENT, true)
+            val popupWindow = PopupWindow(view, 500, ConstraintLayout.LayoutParams.WRAP_CONTENT, true)
             popupWindow.elevation = 40.0f
             view.findViewById<CardView>(R.id.under24Filter).setOnClickListener {
                 viewModel.setFilter(UNDER_24_FILTER)
