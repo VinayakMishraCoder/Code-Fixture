@@ -28,6 +28,8 @@ class MainActivity : AppCompatActivity() {
     /**
      * Change all platform activity to -> multiplatform.
      * Single Adapter to Contest Adapter.
+     * Change UI/UX of Login Screen.
+     * Think of modeling users's bookmarked contests and saved sites into one model.
      * */
 
     override fun onCreate(savedInstanceState: Bundle?) {
