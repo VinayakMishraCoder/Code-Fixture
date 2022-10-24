@@ -9,4 +9,5 @@
     <string name="all_">All</string>
     <string name="empty_contest_list_text">No contests to show..</string>
     <string name="checkout_other">Checkout other sites available to compete on.</string>
+    <string name="sign_in_text">Please Sign in to avail features of the application.</string>
 </resources>
