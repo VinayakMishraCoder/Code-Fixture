@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.IntentSender
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -30,8 +31,8 @@ import com.google.firebase.ktx.Firebase
 class LoginActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityLoginBinding
-    private var oneTapClient: SignInClient? = null
-    private var signInRequest: BeginSignInRequest? = null
+    lateinit var oneTapClient: SignInClient
+    lateinit var signInRequest: BeginSignInRequest
     private val REQ_ONE_TAP = Constants.REQ_TAP_LOGIN
     private var showOneTapUI = true
     private var auth: FirebaseAuth = Firebase.auth
@@ -40,6 +41,36 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         supportActionBar?.hide()
+        binding.registerButton.setOnClickListener {
+            oneTapClient = Identity.getSignInClient(this)
+            signInRequest = BeginSignInRequest.builder()
+                .setPasswordRequestOptions(
+                    BeginSignInRequest.PasswordRequestOptions.builder()
+                        .setSupported(true)
+                        .build()
+                )
+                .setGoogleIdTokenRequestOptions(
+                    BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
+                        .setSupported(true)
+                        .setFilterByAuthorizedAccounts(false)
+                        .setServerClientId(getString(R.string.default_web_client_id))
+                        .build()
+                )
+                .build()
+            oneTapClient.beginSignIn(signInRequest).addOnSuccessListener(this) { result ->
+                try {
+                    startIntentSenderForResult(
+                        result.pendingIntent.intentSender, REQ_ONE_TAP,
+                        null, 0, 0, 0, null
+                    )
+                } catch (e: IntentSender.SendIntentException) {
+
+                }
+            }.addOnFailureListener(this) { e ->
+                Toast.makeText(this, "No Google Accounts Found!", Toast.LENGTH_SHORT).show()
+                Log.d("ffg", e.message.toString())
+            }
+        }
 
         binding.signInButton.setOnClickListener {
             oneTapClient = Identity.getSignInClient(this)
@@ -52,12 +83,12 @@ class LoginActivity : AppCompatActivity() {
                 .setGoogleIdTokenRequestOptions(
                     BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
                         .setSupported(true)
+                        .setFilterByAuthorizedAccounts(true)
                         .setServerClientId(getString(R.string.default_web_client_id))
                         .build()
                 )
                 .build()
-
-            oneTapClient?.beginSignIn(signInRequest!!)?.addOnSuccessListener(this) { result ->
+            oneTapClient.beginSignIn(signInRequest).addOnSuccessListener(this) { result ->
                 try {
                     startIntentSenderForResult(
                         result.pendingIntent.intentSender, REQ_ONE_TAP,
@@ -66,10 +97,10 @@ class LoginActivity : AppCompatActivity() {
                 } catch (e: IntentSender.SendIntentException) {
 
                 }
+            }.addOnFailureListener(this) { e ->
+                Toast.makeText(this, "No Google Accounts Found!", Toast.LENGTH_SHORT).show()
+                Log.d("ffg", e.message.toString())
             }
-                ?.addOnFailureListener(this) { e ->
-                    Toast.makeText(this, "No Google Accounts Found!!", Toast.LENGTH_SHORT).show()
-                }
         }
 
     }

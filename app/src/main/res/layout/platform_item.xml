@@ -35,11 +35,11 @@
                 android:layout_marginEnd="9dp"
                 android:src="@drawable/link"
                 app:layout_constraintBottom_toBottomOf="@+id/site_name"
-                app:layout_constraintEnd_toStartOf="@+id/materialRadioButton"
+                app:layout_constraintEnd_toStartOf="@+id/save_site_switch"
                 app:layout_constraintTop_toTopOf="@+id/site_name" />
 
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/materialRadioButton"
+            <CheckBox
+                android:id="@+id/save_site_switch"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="10dp"

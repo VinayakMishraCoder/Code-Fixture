@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
      * Single Adapter to Contest Adapter.
      * Change UI/UX of Login Screen.
      * Think of modeling users's bookmarked contests and saved sites into one model.
+     * Do stuff on Live score as well. - priority
      * */
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,13 +78,11 @@ class MainActivity : AppCompatActivity() {
             val popupWindow = PopupWindow(view, 500, ConstraintLayout.LayoutParams.WRAP_CONTENT, true)
             popupWindow.elevation = 40.0f
             view.findViewById<CardView>(R.id.logout).setOnClickListener {
-//                Firebase.auth.signOut()
-//                GoogleSignIn.getClient(getApplicationContext(), GoogleSignInOptions.DEFAULT_SIGN_IN).signOut();
                 Firebase.auth.signOut()
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
-            popupWindow.showAsDropDown(binding.landerMenu) // view to attach with
+            popupWindow.showAsDropDown(binding.landerMenu)
         }
     }
 
