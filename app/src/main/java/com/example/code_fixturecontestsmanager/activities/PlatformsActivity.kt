@@ -38,6 +38,7 @@ class PlatformsActivity : AppCompatActivity(), PlatformAdapter.onPlatformClickLi
     }
 
     /**
+     * TODO Mke a single UserDetailsContainer class with bookmarks, fav sites.
      * TODO Save sites instead od Constants value use FireBase.id
      * TODO Check creation stuff for creating a doc first time
      * TODO MAKE A GOOD README
