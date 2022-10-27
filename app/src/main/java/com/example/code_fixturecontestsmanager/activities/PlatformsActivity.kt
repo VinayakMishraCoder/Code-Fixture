@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.View.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
@@ -63,6 +64,7 @@ class PlatformsActivity : AppCompatActivity(), PlatformAdapter.onPlatformClickLi
         }
         binding.saveSitesButton.setOnClickListener {
             viewModel.onSaveClick()
+            Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show()
         }
     }
 
