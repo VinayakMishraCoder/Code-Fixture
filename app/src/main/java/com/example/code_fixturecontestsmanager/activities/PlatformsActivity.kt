@@ -37,6 +37,12 @@ class PlatformsActivity : AppCompatActivity(), PlatformAdapter.onPlatformClickLi
         ViewModelProvider(this).get(AvailablePlatformsViewModel::class.java)
     }
 
+    /**
+     * TODO Save sites instead od Constants value use FireBase.id
+     * TODO Check creation stuff for creating a doc first time
+     * TODO MAKE A GOOD README
+     * */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_platforms)
