@@ -12,6 +12,7 @@ import com.example.code_fixturecontestsmanager.Constants
 import com.example.code_fixturecontestsmanager.MainActivity
 import com.example.code_fixturecontestsmanager.R
 import com.example.code_fixturecontestsmanager.databinding.ActivityLoginBinding
+import com.example.code_fixturecontestsmanager.models.UserDetailsContainer
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.auth.api.identity.SignInClient
@@ -26,6 +27,7 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
@@ -36,6 +38,7 @@ class LoginActivity : AppCompatActivity() {
     private val REQ_ONE_TAP = Constants.REQ_TAP_LOGIN
     private var showOneTapUI = true
     private var auth: FirebaseAuth = Firebase.auth
+    val siteCollection = Firebase.firestore.collection(Constants.FIREBASE_COLLECTION_REFERENCE1)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,6 +112,22 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         val currentUser = auth.currentUser
         if (currentUser != null) {
+            currentUser?.email?.let {
+                siteCollection.document(it).get().addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val document = task.result
+                        if (document != null && !document.exists()) {
+                            siteCollection.document(it).set(UserDetailsContainer()) // Initialise user on Login with empty values
+                        }
+                    } else {
+                        Toast.makeText(
+                            this,
+                            task.exception.toString(),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
@@ -122,7 +141,6 @@ class LoginActivity : AppCompatActivity() {
                 try {
                     val credential = oneTapClient?.getSignInCredentialFromIntent(data)
                     val idToken = credential?.googleIdToken
-                    val username = credential?.id
                     val password = credential?.password
                     when {
                         idToken != null -> {
@@ -130,7 +148,22 @@ class LoginActivity : AppCompatActivity() {
                             auth.signInWithCredential(firebaseCredential)
                                 .addOnCompleteListener(this) { task ->
                                     if (task.isSuccessful) {
-                                        val user = auth.currentUser
+                                        auth.currentUser?.email?.let {
+                                            siteCollection.document(it).get().addOnCompleteListener { task ->
+                                                if (task.isSuccessful) {
+                                                    val document = task.result
+                                                    if (document != null && !document.exists()) {
+                                                        siteCollection.document(it).set(UserDetailsContainer()) // Initialise user on Login with empty values
+                                                    }
+                                                } else {
+                                                    Toast.makeText(
+                                                        this,
+                                                        task.exception.toString(),
+                                                        Toast.LENGTH_SHORT
+                                                    ).show()
+                                                }
+                                            }
+                                        }
                                         startActivity(Intent(this, MainActivity::class.java))
                                         finish()
                                     } else {

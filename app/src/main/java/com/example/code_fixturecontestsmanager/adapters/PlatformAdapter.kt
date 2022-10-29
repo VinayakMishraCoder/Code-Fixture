@@ -13,6 +13,7 @@ class PlatformAdapter : RecyclerView.Adapter<PlatformAdapter.PlatformViewHolder>
     var platformsList: AvailablePlatforms? = null
     var listener: onPlatformClickListeners? = null
     var listOfAlreadySelectedSites: ArrayList<String>? = null
+
     fun setUp(platformsList: AvailablePlatforms, listener: onPlatformClickListeners, listOfAlreadySelectedSites: ArrayList<String>) {
         this.platformsList = platformsList
         this.listener = listener
