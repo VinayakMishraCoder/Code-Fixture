@@ -17,7 +17,7 @@
         android:theme="@style/Theme.CodeFixtureContestsManager"
         tools:targetApi="31">
         <activity
-            android:name=".activities.SavedSitesContestsActivity"
+            android:name=".activities.BookMarkedContestsActivity"
             android:exported="false" />
         <activity
             android:name=".activities.login.LoginActivity"
@@ -41,7 +41,7 @@
             android:name=".activities.SavedActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.AllOtherPlatformActivity"
+            android:name=".activities.MultiplePlatformsActivity"
             android:exported="false" />
         <activity
             android:name=".activities.SinglePlatformContestsActivity"

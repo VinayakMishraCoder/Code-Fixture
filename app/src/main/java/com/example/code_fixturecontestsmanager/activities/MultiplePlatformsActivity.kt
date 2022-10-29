@@ -8,8 +8,8 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.CalendarContract
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
@@ -25,37 +25,40 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.code_fixture.models.Contests
 import com.example.code_fixture.models.ContestsItem
-import com.example.code_fixturecontestsmanager.MainActivity
-import com.example.code_fixturecontestsmanager.ModulateResponse
-import com.example.code_fixturecontestsmanager.R
-import com.example.code_fixturecontestsmanager.UtilProvider
-import com.example.code_fixturecontestsmanager.adapters.SinglePlatformContestAdapter
+import com.example.code_fixturecontestsmanager.*
+import com.example.code_fixturecontestsmanager.adapters.ContestsAdapter
 import com.example.code_fixturecontestsmanager.databinding.ActivityAllOtherPlatformBinding
 import com.example.code_fixturecontestsmanager.databinding.LoadingDialogBinding
-import com.example.code_fixturecontestsmanager.viewmodels.SinglePlatformContestsViewModel
+import com.example.code_fixturecontestsmanager.models.UserDetailsContainer
+import com.example.code_fixturecontestsmanager.viewmodels.ContestsViewModel
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.*
 import java.util.*
-import java.util.Locale.filter
 
-class AllOtherPlatformActivity : AppCompatActivity(),
-    SinglePlatformContestAdapter.onContestItemClickListener {
+class MultiplePlatformsActivity : AppCompatActivity(),
+    ContestsAdapter.onContestItemClickListener {
 
     lateinit var binding: ActivityAllOtherPlatformBinding
-    lateinit var adapter: SinglePlatformContestAdapter
-    private val viewModel: SinglePlatformContestsViewModel by lazy {
-        ViewModelProvider(this).get(SinglePlatformContestsViewModel::class.java)
-    }
+    lateinit var adapter: ContestsAdapter
     val activityId = "AllOtherContestsActivity"
+    val activityType: String by lazy { intent.getStringExtra(MainActivity.ACTIVITY_SHIFTER) as String }
+    private val viewModel: ContestsViewModel by lazy {
+        ViewModelProvider(this).get(ContestsViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_all_other_platform)
+        adapter = ContestsAdapter()
         supportActionBar?.hide()
 
         binding.filterSortBut.setOnClickListener {
-            val inflater =
-                binding.root.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val inflater = binding.root.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val view = inflater.inflate(R.layout.filter_popup_window, null) // pass custom layout
-            val popupWindow =
-                PopupWindow(view, 500, ConstraintLayout.LayoutParams.WRAP_CONTENT, true)
+            val popupWindow = PopupWindow(view, 500, ConstraintLayout.LayoutParams.WRAP_CONTENT, true)
             popupWindow.elevation = 40.0f
             view.findViewById<CardView>(R.id.under24Filter).setOnClickListener {
                 viewModel.setFilter(SinglePlatformContestsActivity.UNDER_24_FILTER)
@@ -76,28 +79,32 @@ class AllOtherPlatformActivity : AppCompatActivity(),
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.window?.addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND)
         dialog.show()
+        if(MainActivity.FAVOURITE_SITES_CONTESTS == activityType) {
+            viewModel.favouritesActivity = true
+            binding.toolbarTitle.text = "Favourite Contests"
+        }
+        binding.favContests.setOnClickListener {
+            val intent = Intent(this, PlatformsActivity::class.java)
+            startActivity(intent)
+        }
         viewModel.getContests(activityId, {
             Toast.makeText(
-                this@AllOtherPlatformActivity,
+                this@MultiplePlatformsActivity,
                 "Error Occurred!",
                 Toast.LENGTH_SHORT
             ).show()
         })
-        adapter = SinglePlatformContestAdapter()
 
         viewModel.singlePlatformContests.observe(this) { contestData ->
             viewModel.listSize.observe(this) { currSize ->
-//                binding.progressHorz.visibility = (if (currSize > 0) View.GONE else View.VISIBLE)
                 dialog.cancel()
+                var contestList = contestData
                 if (currSize > 0) {
-                    setFilteredValues(contestData)
-                    viewModel.filteredListSize?.let {
-//                        if(it == 0) binding.noResponseView.visibility = View.VISIBLE
-//                        else binding.noResponseView.visibility = View.INVISIBLE
-                    }
+                    setFilteredValues(contestList)
+                    viewModel.filteredListSize?.let { /** No Response View Code **/ }
                     adapter.setUpRecyclerView(
-                        data = contestData,
-                        listener = this@AllOtherPlatformActivity,
+                        data = contestList,
+                        listener = this@MultiplePlatformsActivity,
                         activityId = activityId
                     ) {
                         val controller: LayoutAnimationController =
@@ -109,21 +116,22 @@ class AllOtherPlatformActivity : AppCompatActivity(),
                         adapter.notifyDataSetChanged()
                         binding.recyclerView.scheduleLayoutAnimation()
                     }
-                    binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+                    binding.searchView.setOnQueryTextListener(object :
+                        SearchView.OnQueryTextListener,
                         android.widget.SearchView.OnQueryTextListener {
                         override fun onQueryTextSubmit(p0: String?): Boolean = false
                         override fun onQueryTextChange(msg: String): Boolean {
                             var filteredData = Contests()
                             val searchText = msg.lowercase()
-                            for(contest in contestData) {
+                            for (contest in contestList) {
                                 val contestSite = contest.site?.lowercase()
                                 val contestName = contest.site?.lowercase()
-                                if(contestSite?.contains(searchText) == true || contestName?.contains(searchText) == true)
+                                if (contestSite?.contains(searchText) == true || contestName?.contains(searchText) == true)
                                     filteredData.add(contest)
                             }
                             adapter.setUpRecyclerView(
                                 data = filteredData,
-                                listener = this@AllOtherPlatformActivity,
+                                listener = this@MultiplePlatformsActivity,
                                 activityId = activityId
                             ) {
                                 adapter.notifyDataSetChanged()
@@ -133,26 +141,23 @@ class AllOtherPlatformActivity : AppCompatActivity(),
                     })
                     binding.recyclerView.adapter = adapter
                 } else {
-
                 }
             }
         }
     }
 
+
+
     override fun onRegisterClick(contestsItem: ContestsItem) {
         val builder = CustomTabsIntent.Builder()
         val customTabsIntent = builder.build()
         val colorInt: Int = Color.parseColor("#1565C0")
-        val defaultColors = CustomTabColorSchemeParams.Builder()
-            .setToolbarColor(colorInt)
-            .build()
+        val defaultColors = CustomTabColorSchemeParams.Builder().setToolbarColor(colorInt).build()
         builder.setDefaultColorSchemeParams(defaultColors)
         customTabsIntent.launchUrl(this, Uri.parse(contestsItem.url))
     }
 
-    override fun onSaveClick(contestsItem: ContestsItem) {
-
-    }
+    override fun onSaveClick(contestsItem: ContestsItem) {}
 
     override fun onAlarmSetClick(contestsItem: ContestsItem) {
         notifierForContest(contestsItem)

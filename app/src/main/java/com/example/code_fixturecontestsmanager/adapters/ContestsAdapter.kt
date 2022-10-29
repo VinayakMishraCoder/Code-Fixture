@@ -1,11 +1,7 @@
 package com.example.code_fixturecontestsmanager.adapters
 
-import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
-import android.view.animation.LayoutAnimationController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.code_fixture.models.ContestsItem
 import com.example.code_fixturecontestsmanager.MainActivity
@@ -13,8 +9,8 @@ import com.example.code_fixturecontestsmanager.R
 import com.example.code_fixturecontestsmanager.UtilProvider
 import com.example.code_fixturecontestsmanager.databinding.ItemContestBinding
 
-class SinglePlatformContestAdapter :
-    RecyclerView.Adapter<SinglePlatformContestAdapter.ItemContestViewHolder>() {
+class ContestsAdapter :
+    RecyclerView.Adapter<ContestsAdapter.ItemContestViewHolder>() {
 
     var data: ArrayList<ContestsItem>? = null
     var listener: onContestItemClickListener? = null

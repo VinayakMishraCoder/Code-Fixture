@@ -26,19 +26,19 @@ import com.example.code_fixturecontestsmanager.MainActivity
 import com.example.code_fixturecontestsmanager.ModulateResponse
 import com.example.code_fixturecontestsmanager.R
 import com.example.code_fixturecontestsmanager.UtilProvider
-import com.example.code_fixturecontestsmanager.adapters.SinglePlatformContestAdapter
+import com.example.code_fixturecontestsmanager.adapters.ContestsAdapter
 import com.example.code_fixturecontestsmanager.databinding.ActivitySinglePlatformContestsBinding
-import com.example.code_fixturecontestsmanager.viewmodels.SinglePlatformContestsViewModel
+import com.example.code_fixturecontestsmanager.viewmodels.ContestsViewModel
 import java.util.*
 
 class SinglePlatformContestsActivity : AppCompatActivity(),
-    SinglePlatformContestAdapter.onContestItemClickListener {
+    ContestsAdapter.onContestItemClickListener {
 
     lateinit var binding: ActivitySinglePlatformContestsBinding
-    lateinit var adapter: SinglePlatformContestAdapter
+    lateinit var adapter: ContestsAdapter
     private var activityId = "null"
-    private val viewModel: SinglePlatformContestsViewModel by lazy {
-        ViewModelProvider(this).get(SinglePlatformContestsViewModel::class.java)
+    private val viewModel: ContestsViewModel by lazy {
+        ViewModelProvider(this).get(ContestsViewModel::class.java)
     }
 
     companion object {
@@ -89,7 +89,7 @@ class SinglePlatformContestsActivity : AppCompatActivity(),
                 ).show()
             })
         }
-        adapter = SinglePlatformContestAdapter()
+        adapter = ContestsAdapter()
 
         viewModel.singlePlatformContests.observe(this) { contestData ->
             viewModel.listSize.observe(this) { currSize ->

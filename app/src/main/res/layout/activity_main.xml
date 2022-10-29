@@ -14,6 +14,38 @@
             android:background="@color/plo"
             android:fitsSystemWindows="true">
 
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView3"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="25dp"
+                app:cardCornerRadius="30dp"
+                app:layout_constraintBottom_toBottomOf="@+id/userGreetings"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/userGreetings">
+
+                <!--                <androidx.appcompat.widget.AppCompatImageView-->
+                <!--                    android:id="@+id/appuserurl"-->
+                <!--                    android:layout_width="30dp"-->
+                <!--                    android:layout_height="30dp"-->
+                <!--                    tools:layout_editor_absoluteX="27dp"-->
+                <!--                    tools:layout_editor_absoluteY="17dp" />-->
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/userGreetings"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/themeColor"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/lander_menu"
+                app:layout_constraintStart_toEndOf="@+id/materialCardView3"
+                app:layout_constraintTop_toTopOf="@+id/lander_menu"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="Hello, Vinayak Mishra." />
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/lander_menu"
                 android:layout_width="30dp"
@@ -54,9 +86,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:layout_marginTop="20dp"
-                            android:text="Find all your favourite sites to \ncompete on, here."
+                            android:text="Find contests on all your favourite sites to compete on, here."
                             android:textColor="@color/white"
-                            android:textSize="16sp" />
+                            android:textSize="15sp" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -64,13 +96,14 @@
                             android:orientation="horizontal">
 
                             <com.google.android.material.button.MaterialButton
+                                android:id="@+id/favouriteSites"
                                 android:layout_width="127dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="13dp"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="4dp"
                                 android:backgroundTint="@color/white"
-                                android:text="Favourite sites"
+                                android:text="Favourites.."
                                 android:textAllCaps="false"
                                 android:textColor="@color/themeColor"
                                 android:textSize="12sp"

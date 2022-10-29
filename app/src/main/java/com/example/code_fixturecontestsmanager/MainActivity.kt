@@ -9,14 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
-import com.example.code_fixturecontestsmanager.activities.AllOtherPlatformActivity
+import com.example.code_fixturecontestsmanager.activities.MultiplePlatformsActivity
+import com.example.code_fixturecontestsmanager.activities.BookMarkedContestsActivity
 import com.example.code_fixturecontestsmanager.activities.PlatformsActivity
 import com.example.code_fixturecontestsmanager.activities.SinglePlatformContestsActivity
 import com.example.code_fixturecontestsmanager.activities.login.LoginActivity
 import com.example.code_fixturecontestsmanager.databinding.ActivityMainBinding
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -24,7 +22,7 @@ import com.google.firebase.ktx.Firebase
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
-
+    private val currentUser = Firebase.auth.currentUser
     /**
      * Change all platform activity to -> multiplatform.
      * Single Adapter to Contest Adapter.
@@ -45,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         binding.horizontalScrollView.apply {
             isSmoothScrollingEnabled = true
         }
-
+        binding.userGreetings.text = currentUser?.displayName
         binding.apply {
             cfContestButton.setOnClickListener {
                 val intent = Intent(this@MainActivity, SinglePlatformContestsActivity::class.java)
@@ -63,7 +61,15 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             allContestButton.setOnClickListener {
-                val intent = Intent(this@MainActivity, AllOtherPlatformActivity::class.java)
+                val intent = Intent(this@MainActivity, MultiplePlatformsActivity::class.java).apply {
+                    putExtra(ACTIVITY_SHIFTER, OTHER_PLATFORMS)
+                }
+                startActivity(intent)
+            }
+            favouriteSites.setOnClickListener {
+                val intent = Intent(this@MainActivity, MultiplePlatformsActivity::class.java).apply {
+                    putExtra(ACTIVITY_SHIFTER, FAVOURITE_SITES_CONTESTS)
+                }
                 startActivity(intent)
             }
             addMore.setOnClickListener {
@@ -82,6 +88,11 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
+            view.findViewById<CardView>(R.id.bookmarked_contests).setOnClickListener {
+                Firebase.auth.signOut()
+                startActivity(Intent(this, BookMarkedContestsActivity::class.java))
+                finish()
+            }
             popupWindow.showAsDropDown(binding.landerMenu)
         }
     }
@@ -92,6 +103,8 @@ class MainActivity : AppCompatActivity() {
         val CODE_CHEF = "CodeChef";
         val LEET_CODE = "LeetCode";
         val OTHER_PLATFORMS = "OtherPlatforms";
+        val BOOK_MARKS_ACTIVITY = "Book Marked Contests"
+        val FAVOURITE_SITES_CONTESTS = "Favourite Sites"
     }
 }
 
