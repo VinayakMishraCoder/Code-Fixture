@@ -54,6 +54,11 @@ class PlatformsActivity : AppCompatActivity(), PlatformAdapter.onPlatformClickLi
         adapter = PlatformAdapter()
         binding.recyclerView.adapter = adapter
         viewModel.getAvailablePlatforms()
+
+        /**
+         * Retrieve lists of already selected sites first which will init. listOfAlreadySelectedSites.
+         * Then set list listOfSites == listOfAlreadySelectedSites using equalise.
+         * */
         viewModel.retrieveSelectedSitesList()
         viewModel.equaliseLists()
 

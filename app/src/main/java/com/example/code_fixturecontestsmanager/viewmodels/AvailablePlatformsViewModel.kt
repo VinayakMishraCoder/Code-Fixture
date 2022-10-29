@@ -55,6 +55,11 @@ class AvailablePlatformsViewModel : ViewModel() {
     }
 
     fun onSaveClick() = CoroutineScope(Dispatchers.IO).launch {
+
+        /**
+         * Get the document referring to emailId of current user.
+         * Then swap contents of sites present in userContainer with listOfSites.
+         * */
         currUserLoggedIn?.email?.let {
             val docRef = siteCollection.document(it)
             withContext(Dispatchers.Main) {
@@ -65,7 +70,6 @@ class AvailablePlatformsViewModel : ViewModel() {
                             temp = userDetails
                             temp?.listOfSavedSites = listOfSites
                             temp?.let { docRef.set(it) }
-                            equaliseLists()
                         }
                     }
                 }.addOnFailureListener { exception ->
