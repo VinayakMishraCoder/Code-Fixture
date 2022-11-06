@@ -62,7 +62,9 @@ dependencies {
     // Material Views
     implementation 'com.google.android.material:material:1.8.0-alpha01'
 
+    // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
+
     // circle image view
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
@@ -83,4 +85,6 @@ dependencies {
     // Also add the dependency for the Google Play services library and specify its version
     implementation 'com.google.android.gms:play-services-auth:20.3.0'
 
+    // Picasso for downloading images
+    implementation 'com.squareup.picasso:picasso:2.8'
 }

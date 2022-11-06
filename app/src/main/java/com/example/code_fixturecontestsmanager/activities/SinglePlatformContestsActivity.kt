@@ -93,8 +93,7 @@ class SinglePlatformContestsActivity : AppCompatActivity(),
 
         viewModel.singlePlatformContests.observe(this) { contestData ->
             viewModel.listSize.observe(this) { currSize ->
-                binding.progressBarCforces.visibility =
-                    (if (currSize > 0) View.GONE else View.VISIBLE)
+                binding.progressBarCforces.visibility = (if (currSize > 0) View.GONE else View.VISIBLE)
                 if (currSize > 0) {
                     setFilteredValues(contestData)
                     viewModel.filteredListSize?.let {

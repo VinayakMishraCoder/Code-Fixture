@@ -3,6 +3,7 @@ package com.example.code_fixturecontestsmanager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.PopupWindow
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,7 @@ import com.example.code_fixturecontestsmanager.activities.login.LoginActivity
 import com.example.code_fixturecontestsmanager.databinding.ActivityMainBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.squareup.picasso.Picasso
 
 
 class MainActivity : AppCompatActivity() {
@@ -43,7 +45,9 @@ class MainActivity : AppCompatActivity() {
         binding.horizontalScrollView.apply {
             isSmoothScrollingEnabled = true
         }
-        binding.userGreetings.text = currentUser?.displayName
+        binding.userGreetings.text = "Hi, \n" + currentUser?.displayName
+        Picasso.get().load(currentUser?.photoUrl?.toString()).into(binding.appuserurl)
+        currentUser?.photoUrl?.let { Log.d("fg", it.toString()) }
         binding.apply {
             cfContestButton.setOnClickListener {
                 val intent = Intent(this@MainActivity, SinglePlatformContestsActivity::class.java)
@@ -81,17 +85,15 @@ class MainActivity : AppCompatActivity() {
         binding.landerMenu.setOnClickListener {
             val inflater = binding.root.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val view = inflater.inflate(R.layout.main_activity_popup, null) // pass custom layout
-            val popupWindow = PopupWindow(view, 500, ConstraintLayout.LayoutParams.WRAP_CONTENT, true)
-            popupWindow.elevation = 40.0f
+            val popupWindow = PopupWindow(view, 480, ConstraintLayout.LayoutParams.WRAP_CONTENT, true)
+            popupWindow.elevation = 240.0f
             view.findViewById<CardView>(R.id.logout).setOnClickListener {
                 Firebase.auth.signOut()
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
             view.findViewById<CardView>(R.id.bookmarked_contests).setOnClickListener {
-                Firebase.auth.signOut()
                 startActivity(Intent(this, BookMarkedContestsActivity::class.java))
-                finish()
             }
             popupWindow.showAsDropDown(binding.landerMenu)
         }

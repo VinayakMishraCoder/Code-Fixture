@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="200dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                         android:layout_marginBottom="2dp"
                         android:text="Options"
                         android:textColor="@color/white"
-                        android:textSize="15sp" />
+                        android:textSize="13sp" />
 
                 </LinearLayout>
 
@@ -165,6 +165,7 @@
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/help">
@@ -186,7 +187,7 @@
                             android:layout_gravity="center"
                             android:layout_marginStart="10dp"
                             android:backgroundTint="@color/white"
-                            android:text="Bookmarked Contests"
+                            android:text="Book Marks"
                             android:textColor="#455A64"
                             android:textSize="13sp"
                             android:textStyle="bold" />

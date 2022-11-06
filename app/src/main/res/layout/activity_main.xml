@@ -24,12 +24,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/userGreetings">
 
-                <!--                <androidx.appcompat.widget.AppCompatImageView-->
-                <!--                    android:id="@+id/appuserurl"-->
-                <!--                    android:layout_width="30dp"-->
-                <!--                    android:layout_height="30dp"-->
-                <!--                    tools:layout_editor_absoluteX="27dp"-->
-                <!--                    tools:layout_editor_absoluteY="17dp" />-->
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appuserurl"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    tools:layout_editor_absoluteX="27dp"
+                    tools:layout_editor_absoluteY="17dp" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -37,9 +37,8 @@
                 android:id="@+id/userGreetings"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/themeColor"
-                android:textStyle="bold"
                 android:layout_marginStart="10dp"
+                android:textColor="@color/themeColor"
                 app:layout_constraintBottom_toBottomOf="@+id/lander_menu"
                 app:layout_constraintStart_toEndOf="@+id/materialCardView3"
                 app:layout_constraintTop_toTopOf="@+id/lander_menu"
