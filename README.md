@@ -11,3 +11,7 @@
 
 • Added **Chrome CustomTabs.** for opening registration portal and added support for setting reminders using Google Calender. <br />
 
+• Adopted the MVVM architecture to make app more scalable. 
+![image](https://github.com/VinayakMishraCoder/Code-Fixture/assets/85163724/607e1818-8685-4d3e-84c8-aae078d998c0)
+
+
