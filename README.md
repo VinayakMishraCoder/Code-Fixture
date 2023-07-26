@@ -1,7 +1,8 @@
-# Code-Fixture
-## Demo in the Video
+# App - Code-Fixture (Demo in the Video)
 
+## Introduction
 • App allows you to login and keep track of contests (currently happening/about to happen) on your favourite coding sites, provided that you have logged in the sites from your mobile browser previously.<br />
+
 • The app is built following the **MVVM Architecture** and integrated **RetroFit Library** for making Network Requests.<br /><br />
 <img src="https://github.com/VinayakMishraCoder/Code-Fixture/assets/85163724/81a9e767-3929-4d89-a0d1-714d08d6a82e" width="270" height="600">      <img src="https://github.com/VinayakMishraCoder/Code-Fixture/assets/85163724/a6430e1c-8e11-46ec-963b-4674e5bada56" width="270" height="600">
 
@@ -12,6 +13,11 @@
 • Added **Chrome CustomTabs.** for opening registration portal and added support for setting reminders using Google Calender. <br />
 
 • Adopted the MVVM architecture to make app more scalable. 
+
 ![image](https://github.com/VinayakMishraCoder/Code-Fixture/assets/85163724/607e1818-8685-4d3e-84c8-aae078d998c0)
+
+## Demo :-
+
+https://github.com/VinayakMishraCoder/Code-Fixture/assets/85163724/d9352859-c9ce-4962-bd99-012f8ca581fb
 
 
